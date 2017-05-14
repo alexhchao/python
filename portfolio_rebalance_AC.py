@@ -93,12 +93,16 @@ def asset_alloc_strategy(price, returns, weights, freq='none', capital = 1000):
     weights = capital.iloc[:,0:2].div(capital.portfolio, axis='index')
     return shares, weights, capital
     
-# ====
+# ===
+price = price.dropna()
+returns = price.pct_change()
 
+weights, capital = asset_alloc_strategy(price, returns, [.10,.10,.20,.40,0.0,.10,.10])
 
-shares, weights, capital = asset_alloc_strategy(price, returns, [.6,.4])
+get_stats(capital)
+
 shares.head()
-    
+
 
 
 
